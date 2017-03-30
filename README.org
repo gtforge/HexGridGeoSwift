@@ -1,0 +1,14 @@
+* HexGrid GEO
+** Basics
+   GEO wrapper for [[https://github.com/gojuno/HexGridSwift][HexGrid]].
+** Examples
+#+BEGIN_SRC swift
+import HexGrid
+import HexGridGeo
+
+let grid: HexGridGeo.Grid = HexGridGeo.Grid(orientation: OrientationFlat, size: 500.0, projection: ProjectionSM())
+let hex: Hex = grid.hexAt(HexGridGeo.Point(lon: -73.5, lat: 40.3))
+let code: Int64 = grid.hexToCode(hex: hex)
+let restoredHex: Hex = grid.hexFromCode(code: code)
+let neighbors: [Hex] = grid.hexNeighbors(hex: hex, layers: 2)
+#+END_SRC
