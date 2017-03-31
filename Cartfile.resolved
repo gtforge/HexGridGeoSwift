@@ -1,4 +1,4 @@
+github "gojuno/MortonSwift" "v1.0.1"
 github "Quick/Nimble" "v4.1.0"
 github "Quick/Quick" "v0.9.3"
-github "gojuno/MortonSwift" "v1.0.1"
-github "gojuno/HexGridSwift" "v1.0.0"
+github "gojuno/HexGridSwift" "v1.0.1"
