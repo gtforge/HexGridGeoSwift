@@ -6,9 +6,9 @@
 import HexGrid
 import HexGridGeo
 
-let grid: HexGridGeo.Grid = HexGridGeo.Grid(orientation: OrientationFlat, size: 500.0, projection: ProjectionSM())
+let grid = HexGridGeo.Grid(orientation: OrientationFlat, size: 500.0, projection: ProjectionSM())
 let hex: Hex = grid.hexAt(HexGridGeo.Point(lon: -73.5, lat: 40.3))
-let code: Int64 = grid.hexToCode(hex: hex)
-let restoredHex: Hex = grid.hexFromCode(code: code)
-let neighbors: [Hex] = grid.hexNeighbors(hex: hex, layers: 2)
+let code: Int64 = try! grid.hexToCode(hex)
+let restoredHex: Hex = grid.hexFromCode(code)
+let neighbors: [Hex] = grid.hexNeighbors(hex, layers: 2)
 #+END_SRC
