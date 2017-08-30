@@ -8,14 +8,14 @@ import HexGridGeo
 
 final class HexGridGeoSpec: QuickSpec {
     override func spec() {
-        func doComparePoints(expected: HexGrid.Point, got: HexGrid.Point, precision: Double) {
+        func doComparePoints(_ expected: HexGrid.Point, got: HexGrid.Point, precision: Double) {
             it("should have close enough points") {
                 expect(got.x).to(beCloseTo(expected.x, within: precision))
                 expect(got.y).to(beCloseTo(expected.y, within: precision))
             }
         }
 
-        func doCompareGeoPoints(expected: HexGridGeo.Point, got: HexGridGeo.Point, precision: Double) {
+        func doCompareGeoPoints(_ expected: HexGridGeo.Point, got: HexGridGeo.Point, precision: Double) {
             it("should have close enough geo points") {
                 expect(got.lon).to(beCloseTo(expected.lon, within: precision))
                 expect(got.lat).to(beCloseTo(expected.lat, within: precision))
