@@ -19,84 +19,84 @@ public struct Point {
 }
 
 public protocol Projection {
-    func geoToPoint(geoPoint: Point) -> HexGrid.Point
-    func pointToGeo(point: HexGrid.Point) -> Point
+    func geoToPoint(_ geoPoint: Point) -> HexGrid.Point
+    func pointToGeo(_ point: HexGrid.Point) -> Point
 }
 
-public class ProjectionNoOp: Projection {
+open class ProjectionNoOp: Projection {
     public init() {
     }
     
-    public func geoToPoint(geoPoint: Point) -> HexGrid.Point {
+    open func geoToPoint(_ geoPoint: Point) -> HexGrid.Point {
         return HexGrid.Point(x: geoPoint.lon, y: geoPoint.lat)
     }
 
-    public func pointToGeo(point: HexGrid.Point) -> Point {
+    open func pointToGeo(_ point: HexGrid.Point) -> Point {
         return Point(lon: point.x, lat: point.y)
     }
 }
 
-public class ProjectionSin: Projection {
+open class ProjectionSin: Projection {
     public init() {
     }
     
-    public func geoToPoint(geoPoint: Point) -> HexGrid.Point {
-        let λ: Double = (geoPoint.lon + 180) * (M_PI / 180)
-        let φ: Double = geoPoint.lat * (M_PI / 180)
-        let x: Double = (λ * cos(φ)) * ((EarthCircumference / 2) / M_PI)
-        let y: Double = φ * ((EarthCircumference / 2) / M_PI)
+    open func geoToPoint(_ geoPoint: Point) -> HexGrid.Point {
+        let λ: Double = (geoPoint.lon + 180) * (.pi / 180)
+        let φ: Double = geoPoint.lat * (.pi / 180)
+        let x: Double = (λ * cos(φ)) * ((EarthCircumference / 2) / .pi)
+        let y: Double = φ * ((EarthCircumference / 2) / .pi)
         return HexGrid.Point(x: x, y: y)
     }
 
-    public func pointToGeo(point: HexGrid.Point) -> Point {
-        let φ: Double = point.y / ((EarthCircumference / 2) / M_PI)
-        let λ: Double = point.x / (cos(φ) * ((EarthCircumference / 2) / M_PI))
-        let lon: Double = (λ / (M_PI / 180)) - 180
-        let lat: Double = φ / (M_PI / 180)
+    open func pointToGeo(_ point: HexGrid.Point) -> Point {
+        let φ: Double = point.y / ((EarthCircumference / 2) / .pi)
+        let λ: Double = point.x / (cos(φ) * ((EarthCircumference / 2) / .pi))
+        let lon: Double = (λ / (.pi / 180)) - 180
+        let lat: Double = φ / (.pi / 180)
         return Point(lon: lon, lat: lat)
     }
 }
 
-public class ProjectionAEP: Projection {
+open class ProjectionAEP: Projection {
     public init() {
     }
 
-    public func geoToPoint(geoPoint: Point) -> HexGrid.Point {
-        let θ: Double = geoPoint.lon * (M_PI / 180)
-        let ρ: Double = M_PI / 2 - (geoPoint.lat * (M_PI / 180))
+    open func geoToPoint(_ geoPoint: Point) -> HexGrid.Point {
+        let θ: Double = geoPoint.lon * (.pi / 180)
+        let ρ: Double = .pi / 2 - (geoPoint.lat * (.pi / 180))
         let x: Double = ρ * sin(θ)
         let y: Double = -ρ * cos(θ)
         return HexGrid.Point(x: x, y: y)
     }
 
-    public func pointToGeo(point: HexGrid.Point) -> Point {
+    open func pointToGeo(_ point: HexGrid.Point) -> Point {
         let θ: Double = atan2(point.x, -point.y)
         let ρ: Double = point.x / sin(θ)
-        let lat: Double = (M_PI / 2 - ρ) / (M_PI / 180)
-        let lon: Double = θ / (M_PI / 180)
+        let lat: Double = (.pi / 2 - ρ) / (.pi / 180)
+        let lon: Double = θ / (.pi / 180)
         return Point(lon: lon, lat: lat)
     }
 }
 
-public class ProjectionSM: Projection {
+open class ProjectionSM: Projection {
     public init() {
     }
 
-    public func geoToPoint(geoPoint: Point) -> HexGrid.Point {
-        let latR: Double = geoPoint.lat * (M_PI / 180)
+    open func geoToPoint(_ geoPoint: Point) -> HexGrid.Point {
+        let latR: Double = geoPoint.lat * (.pi / 180)
         let x: Double = geoPoint.lon * EarthMetersPerDegree
-        let y: Double = ((log(tan(latR) + (1 / cos(latR)))) / M_PI) * (EarthCircumference / 2)
+        let y: Double = ((log(tan(latR) + (1 / cos(latR)))) / .pi) * (EarthCircumference / 2)
         return HexGrid.Point(x: x, y: y)
     }
 
-    public func pointToGeo(point: HexGrid.Point) -> Point {
+    open func pointToGeo(_ point: HexGrid.Point) -> Point {
         let lon: Double = point.x / EarthMetersPerDegree
-        let lat: Double = asin(tanh((point.y / (EarthCircumference / 2)) * M_PI)) * (180 / M_PI)
+        let lat: Double = asin(tanh((point.y / (EarthCircumference / 2)) * .pi)) * (180 / .pi)
         return Point(lon: lon, lat: lat)
     }
 }
 
-public class Grid {
+open class Grid {
     let hexgrid: HexGrid.Grid
     let projection: Projection
 
@@ -110,27 +110,27 @@ public class Grid {
         self.projection = projection
     }
 
-    public func hexToCode(hex: Hex) throws -> Int64 {
+    open func hexToCode(_ hex: Hex) throws -> Int64 {
         return try hexgrid.hexToCode(hex)
     }
 
-    public func hexFromCode(code: Int64) -> Hex {
+    open func hexFromCode(_ code: Int64) -> Hex {
         return hexgrid.hexFromCode(code)
     }
 
-    public func hexAt(geoPoint: Point) -> Hex {
+    open func hexAt(_ geoPoint: Point) -> Hex {
         return hexgrid.hexAt(projection.geoToPoint(geoPoint))
     }
 
-    public func hexCenter(hex: Hex) -> Point {
+    open func hexCenter(_ hex: Hex) -> Point {
         return projection.pointToGeo(hexgrid.hexCenter(hex))
     }
 
-    public func hexCorners(hex: Hex) -> [Point] {
+    open func hexCorners(_ hex: Hex) -> [Point] {
         return hexgrid.hexCorners(hex).map(projection.pointToGeo)
     }
 
-    public func hexNeighbors(hex: Hex, layers: Int64) -> [Hex] {
+    open func hexNeighbors(_ hex: Hex, layers: Int64) -> [Hex] {
         return hexgrid.hexNeighbors(hex, layers: layers)
     }
 }
