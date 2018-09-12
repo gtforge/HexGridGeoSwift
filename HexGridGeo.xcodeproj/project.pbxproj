@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B309D2AC21369133000AE531 /* Info.plist in Headers */ = {isa = PBXBuildFile; fileRef = F96F6BF41E841454006CD6C1 /* Info.plist */; };
 		D9456C311E8D63490028A84A /* HexGrid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9456C301E8D63490028A84A /* HexGrid.framework */; };
 		D9CF3BD31E8BEDCC0011D3B2 /* Morton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D9CF3BD21E8BEDCC0011D3B2 /* Morton.framework */; };
 		F96F6BFA1E841454006CD6C1 /* HexGridGeo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F96F6BF01E841454006CD6C1 /* HexGridGeo.framework */; };
@@ -117,6 +118,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B309D2AC21369133000AE531 /* Info.plist in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
