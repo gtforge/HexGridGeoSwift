@@ -30,7 +30,7 @@
 		D9456C301E8D63490028A84A /* HexGrid.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HexGrid.framework; path = "Carthage/Checkouts/HexGridSwift/build/Debug-iphoneos/HexGrid.framework"; sourceTree = "<group>"; };
 		D9CF3BD21E8BEDCC0011D3B2 /* Morton.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Morton.framework; path = "Carthage/Checkouts/MortonSwift/build/Debug-iphoneos/Morton.framework"; sourceTree = "<group>"; };
 		F96F6BF01E841454006CD6C1 /* HexGridGeo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HexGridGeo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F96F6BF41E841454006CD6C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F96F6BF41E841454006CD6C1 /* HexGridGeo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = HexGridGeo.plist; sourceTree = "<group>"; };
 		F96F6BF91E841454006CD6C1 /* HexGridGeoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexGridGeoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F96F6BFE1E841454006CD6C1 /* HexGridGeoSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexGridGeoSpec.swift; sourceTree = "<group>"; };
 		F96F6C001E841454006CD6C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,7 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				F9AF18C01E8415EF00802C23 /* HexGridGeo.swift */,
-				F96F6BF41E841454006CD6C1 /* Info.plist */,
+				F96F6BF41E841454006CD6C1 /* HexGridGeo.plist */,
 			);
 			path = HexGridGeo;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = HexGridGeo/Info.plist;
+				INFOPLIST_FILE = HexGridGeo/HexGridGeo.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -373,7 +373,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = HexGridGeo/Info.plist;
+				INFOPLIST_FILE = HexGridGeo/HexGridGeo.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
