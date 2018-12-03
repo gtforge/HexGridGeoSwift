@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "HexGridGeo"
-  s.version      = "2.0.4"
+  s.version      = "2.0.6"
   s.platform     = :ios, "9.0"
   s.summary      = "HexGridGeoSwift."
   s.homepage     = "https://github.com/gtforge/HexGridGeoSwift"
